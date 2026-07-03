@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme {
+  --color-surface: #0a0d13;
+  --color-panel: #10141d;
+  --color-panel-2: #151b28;
+  --color-edge: #222a3a;
+  --color-ink: #e7eaf2;
+  --color-ink-dim: #96a0b5;
+  --color-accent: #8b7cf8;
+  --color-accent-dim: #6d5ce6;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+/* Slim dark scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-edge) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Markdown rendering for assistant messages / reports */
+.markdown {
+  line-height: 1.65;
+  font-size: 0.925rem;
+}
+.markdown > :first-child {
+  margin-top: 0;
+}
+.markdown h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 1.4em 0 0.6em;
+  color: var(--color-ink);
+}
+.markdown h2 {
+  font-size: 1.12rem;
+  font-weight: 650;
+  margin: 1.5em 0 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--color-edge);
+}
+.markdown h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2em 0 0.4em;
+}
+.markdown p {
+  margin: 0.6em 0;
+}
+.markdown ul,
+.markdown ol {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+}
+.markdown ul {
+  list-style: disc;
+}
+.markdown ol {
+  list-style: decimal;
+}
+.markdown li {
+  margin: 0.25em 0;
+}
+.markdown strong {
+  color: var(--color-ink);
+  font-weight: 650;
+}
+.markdown a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-panel-2);
+  border: 1px solid var(--color-edge);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.markdown pre {
+  background: var(--color-panel-2);
+  border: 1px solid var(--color-edge);
+  border-radius: 8px;
+  padding: 0.9em 1em;
+  overflow-x: auto;
+  margin: 0.8em 0;
+}
+.markdown pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.markdown blockquote {
+  border-left: 3px solid var(--color-accent-dim);
+  padding-left: 1em;
+  margin: 0.8em 0;
+  color: var(--color-ink-dim);
+}
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.9em 0;
+  font-size: 0.875em;
+}
+.markdown th,
+.markdown td {
+  border: 1px solid var(--color-edge);
+  padding: 0.45em 0.7em;
+  text-align: left;
+}
+.markdown th {
+  background: var(--color-panel-2);
+  font-weight: 600;
+}
+.markdown hr {
+  border: none;
+  border-top: 1px solid var(--color-edge);
+  margin: 1.2em 0;
+}
+
+/* Blinking caret on the streaming message */
+.stream-caret::after {
+  content: "▍";
+  color: var(--color-accent);
+  animation: caret-blink 1s steps(2) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}

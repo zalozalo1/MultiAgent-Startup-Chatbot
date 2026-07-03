@@ -1,0 +1,24 @@
+# Workflow wiring for the startup research assistant.
+# The graph builder reads this file — reorder, add or remove specialists here
+# (each entry must have a matching YAML file in prompts/agents/).
+
+name: startup_research
+display_name: Startup Research Workflow
+description: >
+  Supervisor-led multi-agent workflow that researches, analyzes, evaluates and
+  improves a business or startup idea, then compiles the findings into a final
+  research report.
+
+supervisor: supervisor
+specialists:
+  - market_research
+  - competitor_analysis
+  - customer_research
+  - product_strategy
+  - risk_analysis
+  - marketing_strategy
+finalizer: report_writer
+
+# Maximum supervisor routing decisions per run. When exhausted, the workflow
+# is forced to the finalizer with whatever findings exist.
+max_iterations: 10
