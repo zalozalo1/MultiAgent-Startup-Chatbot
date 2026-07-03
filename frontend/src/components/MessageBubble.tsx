@@ -16,13 +16,13 @@ export function MessageBubble({ message }: { message: ChatMessage }) {
     );
   }
 
+  // Agent responses render as plain report text — no bubble — so long
+  // reports read like a document rather than a chat message.
   return (
-    <div className="rounded-2xl rounded-bl-sm border border-edge bg-panel px-5 py-4">
-      <div className={`markdown ${message.streaming ? "stream-caret" : ""}`}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {message.content}
-        </ReactMarkdown>
-      </div>
+    <div className={`markdown ${message.streaming ? "stream-caret" : ""}`}>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        {message.content}
+      </ReactMarkdown>
     </div>
   );
 }
